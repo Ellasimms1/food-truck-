@@ -1,0 +1,9 @@
+post http://localhost:3000/api/v1/menu
+Content-Type: application/json
+
+{
+    "name": "Pizza",
+    "description": "Cheesy goodness",
+    "price": 10.99,
+    "image": " "
+}
