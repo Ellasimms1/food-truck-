@@ -10,10 +10,12 @@ const events =[
     {id:5, name: "Food Truck Rally", date: "2026-10-12", location: "Beachfront", time: "3:00 PM"}
 ]
 
+// returns JSON object of events information/array when URL is GET /api/v1/events/
 router.get('/', (req, res) => {
     res.json(events)
 })
 
+// returns JSON object of event with specified id when URL is GET /api/v1/events/:id
 router.get('/:id', (req, res) => {
     const {id} =req.params
     const found =events.find(item => item.id.toString() === id)
@@ -24,6 +26,7 @@ router.get('/:id', (req, res) => {
     }
 })
 
+// add new event to DB when URL is POST /api/v1/events/
 router.post ('/', (req, res) => {
     const {name, date, location, time} = req.body
     const newEvent = {

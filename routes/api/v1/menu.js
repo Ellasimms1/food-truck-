@@ -1,4 +1,4 @@
-const path = require ('path')
+const path = require ('path') 
 const router = require ('express').Router()
 
 const menu = [
@@ -9,10 +9,12 @@ const menu = [
     {id:5, name: "fries", description: "Crispy golden fries", price: 3.99, image: " "}
 ]
 
+// returns JSON object of menu array/information when URL is GET api/v1/menu/
 router.get('/', (req, res) => {
     res.json(menu)
 })
 
+// returns JSON object that contains menu item with specified id when URL is GET api/v1/menu/:id
 router.get('/:id', (req, res) => {
     const {id} =req.params
     const found =menu.find(item => item.id.toString() === id)
@@ -23,6 +25,7 @@ router.get('/:id', (req, res) => {
     }
 })
 
+// adds new menu item to DB when URL is POST /api/v1/menu/
 router.post ('/', (req, res) => {
     const {name, description, price, image} = req.body
     const newItem = {
