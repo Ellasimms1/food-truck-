@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Ellasimms1/food-truck-#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongodb": "^6.3.0"
   }
 }
