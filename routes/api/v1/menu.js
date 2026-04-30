@@ -2,11 +2,11 @@ const path = require ('path')
 const router = require ('express').Router()
 
 const menu = [
-    {id:1, name: "pizza", description: "Cheesy goodness ", price: 9.99, image: " "},
-    {id:2, name: "burger", description: "Juicy beef patty", price: 11.99, image: " "},
-    {id:3, name: "taco", description: "Spicy chicken wrap", price: 8.99, image: " "},
-    {id:4, name: "hotdog", description: "Grilled sausage in a bun", price: 4.99, image: " "},
-    {id:5, name: "fries", description: "Crispy golden fries", price: 3.99, image: " "}
+    {id:1, name: "pizza", description: "Cheesy goodness ", price: 9.99, image: "/images/pizza.jpg"},
+    {id:2, name: "burger", description: "Juicy beef patty", price: 11.99, image: "/images/burger.jpg"},
+    {id:3, name: "taco", description: "Spicy chicken wrap", price: 8.99, image: "/images/taco.jpg"},
+    {id:4, name: "hotdog", description: "Grilled sausage in a bun", price: 4.99, image: "/images/hotdog.jpg"},
+    {id:5, name: "fries", description: "Crispy golden loaded fries", price: 3.99, image: "/images/fries.jpg"}
 ]
 
 // returns JSON object of menu array/information when URL is GET api/v1/menu/
