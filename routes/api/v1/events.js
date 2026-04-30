@@ -14,7 +14,7 @@ const { getCollection, ObjectId } = require("../../../dbconnect")
 
 
 router.get("/", async (req, res) => {
-    const collection = await getCollection("FoodtruckAPI", "EventItems")
+    const collection = await getCollection("FoodtruckAPI", "events")
     const found = await collection.find({}).toArray()
 
     res.send(found)
@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     const { id } = req.params
 
-    const collection = await getCollection("FoodtruckAPI", "EventItems")
+    const collection = await getCollection("FoodtruckAPI", "events")
 
     const found = await collection.findOne({ _id: new ObjectId(id) })
     if(found) res.send(found)
@@ -32,7 +32,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
     const { name, date, location, time } = req.body
-    const collection = await getCollection("FoodtruckAPI", "EventItems")
+    const collection = await getCollection("FoodtruckAPI", "events")
 
     const { acknowledged, insertedId } = await collection.insertOne({name,date,location,time})
 
