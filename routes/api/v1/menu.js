@@ -24,20 +24,20 @@ router.get("/:id", async (req, res) => {
 
     const collection = await getCollection("FoodtruckAPI", "MenuItems")
 
-    const found = await collection.findOne({
-        _id: new ObjectId(id)
-    })
-
+    const found = await collection.findOne({ _id: new ObjectId(id)})
     if(found) res.send(found)
     else res.send({ error: { message: "Menu item not found" } })
 })
 
 router.post("/", async (req, res) => {
+    const {name, description, price, image} = req.body
     const collection = await getCollection("FoodtruckAPI", "MenuItems")
 
-    await collection.insertOne(req.body)
+    const {acknowledged, insertedId} =
+    await collection.insertOne({ name, description, price, image })
+    res.send({acknowledged, insertedId})
 
-    res.send({ message: "Menu item added" })
+    
 })
 
 module.exports = router
