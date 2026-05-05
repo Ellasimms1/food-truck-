@@ -1,0 +1,23 @@
+const path = require('path')
+const router = require('express').Router()
+
+const root = path.join(__dirname, '..', 'public')
+
+
+router.get('/menu', (request, response) => {
+    response.sendFile('index.html', {root})
+})
+
+router.get('/menu/:id', (request, response) => {
+    response.sendFile('index.html', {root})
+})
+
+router.get('/events', (request, response) => {
+    response.sendFile('index.html', {root})
+})
+
+router.get('/events/:id', (request, response) => {
+    response.sendFile('index.html', {root})
+})
+
+module.exports = router
