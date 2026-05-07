@@ -40,7 +40,7 @@ try{
         
         // click event
         item.addEventListener('click', async () => {
-            const response = await fetch(`/api/v1/events/:${id}`)
+            const response = await fetch(`/api/v1/events/${id}`)
             const found = await response.json()
         })
 
