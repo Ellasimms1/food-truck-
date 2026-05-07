@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
     const collection = await getCollection("FoodtruckAPI", "MenuItems")
 
     const {acknowledged, insertedId} =
-    await collection.insertOne({ name, description, price, image })
+    await collection.insertOne({ name, description, price, imagePath })
     res.send({acknowledged, insertedId})
 
     
