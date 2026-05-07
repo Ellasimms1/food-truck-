@@ -1,40 +1,39 @@
-const eventsDisplayed = document.querySelector('.eventsDisplayed')
+const menuWrapper = document.querySelector('#menuWrapper')
+const eventsWrapper = document.querySelector('#eventsWrapper')
 
-// const getMenu = async () => {
-//     const menuList = document.querySelector('.menuList')
-//     const response = await fetch('/api/v1/menu')
-//     const menu = await response.json()
+// display the menu
+(async () => {
+    const response = await fetch('/api/v1/menu')
+    const menu = await response.json()
 
-//     menuList.innerHTML = 
-// }
+    menu.forEach(({name, description, price, image}) => {
+        const item = document.createElement("div")
+        item.className = "menuItem"
+        item.innerHTML = `
+            <img src="${image}" alt="${name}">
+            <h3>${name}</h3>
+            <p>${description}</p>
+            <p>${price}</p>
+        `
 
-const eventOverview = async () => {
-    const response = await fetch(`/api/v1/events`)
-    return await response.json()
-}
+        menuWrapper.appendChild(item)
+    })
+})()
 
+// display the overview of events
+(async () => {
+    const response = await fetch('/api/v1/events')
+    const events = await response.json()
 
-const showEvent = events => {
-    events?.forEach(({name, date}) => {
-        const individualEvent = document.createElement("div")
-        individualEvent.className = "individual-Event"
-        individualEvent.innerHTML = `
+    events.forEach(({name, date}) => {
+        const item = document.createElement("div")
+        item.className = "individualEvent"
+        item.innerHTML = `
             <h3>${name} on ${date}</h3>
         `
 
         eventsDisplayed.appendChild(individualEvent)
     })
-}
-
-(async () => {
-    const response = await fetch(`/api/v1/events`)
-    const { name, date } = await response.json()
 })()
 
-
-//     const response = await fetch('/api/v1/events')
-//     const events = await response.json()
-
-//     events.innerHTML = 
-// })()
-
+// click event for each event
