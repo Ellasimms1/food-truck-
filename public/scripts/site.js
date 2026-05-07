@@ -1,9 +1,9 @@
 const menuWrapper = document.querySelector('#menuWrapper')
 const eventsWrapper = document.querySelector('#eventsWrapper')
+const eventDetails = document.querySelector('#eventDetails')
 
 // display the menu
-try{
-    (async () => {
+(async () => {
     const response = await fetch('/api/v1/menu')
     const menu = await response.json()
 
@@ -20,18 +20,13 @@ try{
         menuWrapper.appendChild(item)
     })
 })()
-} catch (error)
-{
-    console.log(error)
-}
-
 
 // display the overview of events
 (async () => {
     const response = await fetch('/api/v1/events')
     const events = await response.json()
 
-    events.forEach(({_id, name, date}) => {
+    events.forEach(({_id, name, date, location, time}) => {
         const item = document.createElement("div")
         item.className = "individualEvent"
         item.innerHTML = `
@@ -40,8 +35,18 @@ try{
         
         // click event
         item.addEventListener('click', async () => {
+            try{
             const response = await fetch(`/api/v1/events/${_id}`)
             const found = await response.json()
+
+            eventDetails.innerHTML = `
+                <h2>${name}</h2>
+                <p><strong>Date:</strong> ${date}</p>
+                <p><strong>Location:</strong> ${location}</p>
+                <p><strong>Time:</strong> ${time}</p>
+            `} catch (error) {
+                console.error('Error:', error)
+            }
         })
 
         eventsWrapper.appendChild(item)
