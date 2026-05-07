@@ -57,3 +57,6 @@ const eventOverview = async () => {
     await getMenu()
     await eventOverview()
 })()
+
+// routes for admin
+const menuForm = document.querySelector('#menuForm')
