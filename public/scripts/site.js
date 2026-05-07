@@ -31,7 +31,7 @@ try{
     const response = await fetch('/api/v1/events')
     const events = await response.json()
 
-    events.forEach(({id, name, date}) => {
+    events.forEach(({_id, name, date}) => {
         const item = document.createElement("div")
         item.className = "individualEvent"
         item.innerHTML = `
@@ -40,7 +40,7 @@ try{
         
         // click event
         item.addEventListener('click', async () => {
-            const response = await fetch(`/api/v1/events/${id}`)
+            const response = await fetch(`/api/v1/events/${_id}`)
             const found = await response.json()
         })
 
