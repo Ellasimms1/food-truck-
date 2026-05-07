@@ -2,7 +2,8 @@ const menuWrapper = document.querySelector('#menuWrapper')
 const eventsWrapper = document.querySelector('#eventsWrapper')
 
 // display the menu
-(async () => {
+try{
+    (async () => {
     const response = await fetch('/api/v1/menu')
     const menu = await response.json()
 
@@ -19,6 +20,11 @@ const eventsWrapper = document.querySelector('#eventsWrapper')
         menuWrapper.appendChild(item)
     })
 })()
+} catch (error)
+{
+    console.log(error)
+}
+
 
 // display the overview of events
 (async () => {
