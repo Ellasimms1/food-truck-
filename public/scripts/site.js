@@ -25,14 +25,20 @@ const eventsWrapper = document.querySelector('#eventsWrapper')
     const response = await fetch('/api/v1/events')
     const events = await response.json()
 
-    events.forEach(({name, date}) => {
+    events.forEach(({id, name, date}) => {
         const item = document.createElement("div")
         item.className = "individualEvent"
         item.innerHTML = `
             <h3>${name} on ${date}</h3>
         `
+        
+        // click event
+        item.addEventListener('click', async () => {
+            const response = await fetch(`/api/v1/events/:${id}`)
+            const found = await response.json()
+        })
 
-        eventsDisplayed.appendChild(individualEvent)
+        eventsWrapper.appendChild(item)
     })
 })()
 
