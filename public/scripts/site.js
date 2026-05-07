@@ -11,7 +11,7 @@ try{
         const item = document.createElement("div")
         item.className = "menuItem"
         item.innerHTML = `
-            <img src="${image}" alt="${name}">
+            <img src="${imagePath}" alt="${name}">
             <h3>${name}</h3>
             <p>${description}</p>
             <p>${price}</p>
