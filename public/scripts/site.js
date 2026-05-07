@@ -7,7 +7,7 @@ try{
     const response = await fetch('/api/v1/menu')
     const menu = await response.json()
 
-    menu.forEach(({name, description, price, image}) => {
+    menu.forEach(({name, description, price, imagePath}) => {
         const item = document.createElement("div")
         item.className = "menuItem"
         item.innerHTML = `
