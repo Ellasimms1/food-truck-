@@ -3,7 +3,7 @@ const eventsWrapper = document.querySelector('#eventsWrapper')
 const eventDetails = document.querySelector('#eventDetails')
 
 // display the menu
-(async () => {
+const getMenu = async () => {
     const response = await fetch('/api/v1/menu')
     const menu = await response.json()
 
@@ -19,10 +19,10 @@ const eventDetails = document.querySelector('#eventDetails')
 
         menuWrapper.appendChild(item)
     })
-})()
+}
 
 // display the overview of events
-(async () => {
+const eventOverview = async () => {
     const response = await fetch('/api/v1/events')
     const events = await response.json()
 
@@ -51,6 +51,9 @@ const eventDetails = document.querySelector('#eventDetails')
 
         eventsWrapper.appendChild(item)
     })
-})()
+}
 
-// click event for each event
+(async () => {
+    await getMenu()
+    await eventOverview()
+})()
