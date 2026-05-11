@@ -30,7 +30,7 @@ router.get("/:id", async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
-    const {name, description, price, image} = req.body
+    const {name, description, price, imagePath} = req.body
     const collection = await getCollection("FoodtruckAPI", "MenuItems")
 
     const {acknowledged, insertedId} =
