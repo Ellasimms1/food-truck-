@@ -8,7 +8,6 @@ nav {
     justify-content: right;
     gap: 30px;
 }
-
 nav li {
     display: inline-block;
     padding: 2em;
@@ -105,4 +104,10 @@ h1{
 }
 button:hover {
     background-color: #f0f0f0;
+}
+
+/* event.html */
+#oneEvent p {
+    text-align: center;
+    font-size: 1.5em;
 }

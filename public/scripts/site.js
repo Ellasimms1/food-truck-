@@ -9,6 +9,8 @@ const eventTime = document.querySelector('#eventTime')
 
 // display the menu
 const getMenu = async () => {
+    menuWrapper.innerHTML = ''
+
     const response = await fetch('/api/v1/menu')
     const menu = await response.json()
 
@@ -28,6 +30,8 @@ const getMenu = async () => {
 
 // display the overview of events
 const eventOverview = async () => {
+    eventsWrapper.innerHTML = ''
+
     const response = await fetch('/api/v1/events')
     const events = await response.json()
 
@@ -53,24 +57,78 @@ const eventOverview = async () => {
 
 // routes for admin
 const menuForm = document.querySelector('#menuForm')
+const menuButton = document.querySelector('#menuButton')
+const eventForm = document.querySelector('#eventForm')
+const eventButton = document.querySelector('#eventButton')
 
-menuForm.addEventListener('submit', async () => {
+if (menuButton) {
+    menuButton.addEventListener('click', async () => {
+        const name = document.querySelector('#menuName').value
+        const description = document.querySelector('#menuDescription').value
+        const price = document.querySelector('#menuPrice').value
+        const imagePath = document.querySelector('#menuImageURL').value
 
-})
+        const response = await fetch('/api/v1/menu', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name,
+                description,
+                price,
+                imagePath
+            })
+        })
 
-// display a single event details
-(async () => {
+        const result = await response.json()
+        alert("Menu item added!")
+
+        // resets values
+        menuForm.reset()
+    }) 
+}
+
+if (eventButton) {
+    eventButton.addEventListener('click', async () => {
+        const name = document.querySelector('#eventName').value
+        const date = document.querySelector('#eventDate').value
+        const location = document.querySelector('#eventLocation').value
+        const time = document.querySelector('#eventTime').value
+
+        const response = await fetch('/api/v1/events', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name,
+                date,
+                location,
+                time
+            })
+        })
+
+        const result = await response.json()
+        alert("Event added!")
+        
+        // resets values 
+        eventForm.reset()
+    })
+}
+
+
+// display a single event details on event.html
+const displaySingleEvent = async () => {
     const { pathname } = window.location
 
-    if(pathname.startsWith('/event/')) {
-        const [, route, id] = pathname.split('/')
+    const [, searchType, id] = pathname.split('/')
 
-        const result = await fetch(`/api/v1/events/${id}`)
-        const { name, date, location, time } = await result.json()
+   if (searchType !== 'event') return
 
-        eventName.textContent = name
-        eventDate.textContent = date
-        eventLocation.textContent = location
-        eventTime.textContent = time
-    }
-})()
+    const result = await fetch(`/api/v1/events/${id}`)
+    const { name, date, location, time } = await result.json()
+
+    eventName.textContent = name
+    eventDate.textContent = date
+    eventLocation.textContent = location
+    eventTime.textContent = time
+}
+
+displaySingleEvent()
